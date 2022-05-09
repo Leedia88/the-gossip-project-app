@@ -37,10 +37,14 @@ end
 50.times do
     Gossip.create!(title: Faker::Fantasy::Tolkien.poem, content: Faker::Quote.matz, user_id: Faker::Number.between(from: User.all.first.id, to: User.all.last.id) )
 end
+
 #tags
+colors = ["lalalala", "Magenta", "Orange", "Buttercup", "Atlantis", "Purple", "Vividtangerine", "Meadow", "Info", "Persimmon", "Danger", "DarkKhaki"]
 10.times do
-    Tag.create!(title: Faker::Emotion.noun)
+    color = colors.pop()
+    Tag.create!(title: Faker::Emotion.noun, color: color)
 end
+
 #tags_gossips
     Gossip.all.each do |gossip|
         nb = rand(1..3)
@@ -50,7 +54,7 @@ end
         nb.times do
             tag = TagGossip.new(tag_id: Faker::Number.between(from: Tag.all.first.id, to: Tag.all.last.id), gossip_id: gossip.id )
             if tag.save   
-                p Tag.find(tag.tag_id).title + "  "
+                p Tag.find(tag.tag_id).title + "  " + Tag.find(tag.tag_id).color
             end
         end
     end
@@ -66,3 +70,5 @@ end
         puts "message non envoyé!"+"\n"
     end  
 end 
+
+puts "fini!!!"

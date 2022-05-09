@@ -11,5 +11,5 @@ class PrivateMessage < ApplicationRecord
             errors.add(:recipient, "The recipient cannot be the sender")
         end
     end
-    s
+    
 end

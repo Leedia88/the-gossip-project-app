@@ -8,7 +8,8 @@
                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                 <h5 class="my-3"><%=user.first_name%></h5>
                 <div class="d-flex justify-content-center">
-                <%=link_to "Message", user_path(user)%>
+                    <%=link_to "Message", user_path(user)%>
+                    <%=link_to "Message", contactform_path, :class => "btn btn-outline-primary ms-1"%>
                 </div>
             </div>
         </div> 

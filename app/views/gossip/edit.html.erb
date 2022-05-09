@@ -1,0 +1,31 @@
+    
+<h1>Update Gossip</h1>
+
+<%=form_for :gossip, url: gossip_index_path do |f|%>
+    <%if @gossip.errors.any? %>
+        <% @gossip.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%=msg%></div>
+        <%end%>
+    <%end%>
+<p>
+<%= f.label :user_id%> <br> 
+ <%= f.text_field(:user_id) %>
+</p>
+<p>
+<%= f.label :title%> <br> 
+<%= f.text_field(:title, {:class => "form-control"})%>
+</p>
+<p>
+<%= f.label :content%> <br>
+<%= f.text_area(:content, {:class => "form-control"})%>
+</p>
+<p>
+<%= f.submit({:value => "Update Gossip", :class => "card-link btn btn-info"}) %>
+</p>
+<%end%>
+
+
+<div class="container m-5 text-center">
+<%=link_to "Back to Gossips", gossip_index_path, :class => "card-link btn btn-light" %>
+</div>
+    

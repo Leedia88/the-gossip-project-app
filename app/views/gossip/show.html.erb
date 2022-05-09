@@ -6,8 +6,14 @@
     <div class="card-body">
         <h5 class="card-title">S<%=@gossip.title%></h5>
         <p class="card-text"><%=@gossip.content%></p>
-        <div class="text-center">
+        <div>
+        <%=link_to "Edit", edit_gossip_path(@gossip), :class => "btn btn-info mb-3 text-center ml-5"%>
         <%=link_to "Comment", user_path(@user), :class => "btn btn-primary mb-3 text-center"%><br>
+        </div>
+        <div class="card-body">
+          <%@tags.each do |tag_id|%>
+
+          <%end%>
         </div>
         <div class="card-footer bg-transparent border-success text-center">
         posted: <%=@gossip.created_at%>

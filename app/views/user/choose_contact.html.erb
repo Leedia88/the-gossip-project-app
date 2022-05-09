@@ -1,8 +1,4 @@
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Choose the user to contact</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-    <%@users.each do |user|%>
-      <option><%=user.full_name%></option>
-      <%end%>
-    </select>
-  </div>
+
+
+
+<%=link_to "Message", contact_form_path, :class => "btn btn-outline-primary ms-1"%>

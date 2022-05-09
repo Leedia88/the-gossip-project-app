@@ -10,6 +10,7 @@
               <h5><%=@user.full_name%></h5>
               <p><%=@user.city.name%></p>
               <i class="far fa-edit mb-5"></i>
+              <%=link_to "Message", contactform_path, :class => "btn btn-outline-primary ms-1"%>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">
