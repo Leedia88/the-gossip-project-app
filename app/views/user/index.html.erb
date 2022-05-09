@@ -1,0 +1,59 @@
+
+<div class="row">
+    <%@users.each do |user|%>
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <img src="https://source.unsplash.com/200x200/?portrait?sig=<%=rand(1..50)%>" 
+                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <h5 class="my-3"><%=user.first_name%></h5>
+                <div class="d-flex justify-content-center">
+                <%=link_to "Message", user_path(user)%>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p>Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p><%=user.full_name %></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p>Email</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><%=user.email%></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p>Age</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><%=user.age%></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p>City</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><%=user.city.name%></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%end%>
+</div>
+
