@@ -15,17 +15,30 @@ class GossipController < ApplicationController
     end
 
     def new
+        puts params.inspect
         @users = User.full_name_list
         @gossip = Gossip.new
+        @tags = Tag.all
     end
 
     def create
+        tag_param = params[:tags_id]
+        @tags = Tag.all
         @users = User.full_name_list
         @gossip = Gossip.new(gossip_params)
         if @gossip.save
+            tag_param.each do |tag_id|
+                puts tag_id
+                tg = TagGossip.new(tag_id: tag_id, gossip_id: @gossip.id)
+                if tg.save
+                    flash.notice = "Tag #{Tag.find(tag_id).title} added"
+                else
+                    flash.alert = "Error while tag saving"
+                end
+            end
             redirect_to gossip_index_path, notice: "Gossip Created"
         else
-            render :new
+            render :new, alert: "Gossip not saved"
         end
     end
 
