@@ -16,8 +16,9 @@ application up and running....
 
 # Pinciples
 
-* A user can post gossips on the app
+* A user can post and edit gossips on the app
 * A gossip has one or several tags
+* A gossip can search for keywords to find gossips
 
 # Features to be implemented
 
