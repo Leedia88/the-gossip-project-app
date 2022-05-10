@@ -18,7 +18,7 @@ application up and running....
 
 * A user can post and edit gossips on the app
 * A gossip has one or several tags
-* A gossip can search for keywords to find gossips
+* A gossip can search keywords to find gossips
 
 # Features to be implemented
 
