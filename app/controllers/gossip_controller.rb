@@ -22,6 +22,7 @@ class GossipController < ApplicationController
     end
 
     def create
+        puts params.inspect
         tag_param = params[:tags_id]
         @tags = Tag.all
         @users = User.full_name_list
@@ -55,6 +56,13 @@ class GossipController < ApplicationController
             render :edit
         end
     end
+
+    def destroy
+        @gossip = Gossip.find(params[:id])
+        @gossip.destroy
+        redirect_to gossip_index_path
+    end
+
 
     def search
         @gossips = Gossip.search(params[:search])
