@@ -4,6 +4,7 @@
     <%= submit_tag("Search") %>
     <% end %>
     
+<br><%=link_to "Back to all Gossips", gossip_index_path, :class => "card-link btn btn-light" %><br><br
 
 <br><p>Si tu as du croustillant à nous partager, tu peux :</p>
     <%=link_to "Create a new gossip", new_gossip_path, :class => "card-link btn btn-light" %><br><br>
@@ -14,5 +15,3 @@
         <%=link_to "Gossip n°#{index + 1} from #{User.find(gossip.user_id).first_name}", gossip_path(gossip) %> 
         <p><%=gossip.title%></p><br>
     <% end %>
-    <p>Si tu as du croustillant à nous partager, tu peux :</p>
-    <%=link_to "Create a new gossip", new_gossip_path, :class => "card-link btn btn-light" %>

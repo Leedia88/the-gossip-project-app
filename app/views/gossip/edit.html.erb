@@ -1,12 +1,11 @@
-    
 <h1>Update Gossip</h1>
 
-<%=form_for :gossip, url: gossip_index_path do |f|%>
+<%=form_for @gossip, url: gossip_path(@gossip), method: :patch do |f|%>
     <%if @gossip.errors.any? %>
         <% @gossip.errors.full_messages.each do |msg| %>
         <div class="alert alert-danger"><%=msg%></div>
-        <%end%>
     <%end%>
+<%end%>
 <p>
 <%= f.label :user_id%> <br> 
  <%= f.text_field(:user_id) %>

@@ -39,3 +39,16 @@
       border: 3px solid #fff;
       border-radius: 50%;
       }
+
+      .badge-pill{
+        border-radius: 20px;
+      }
+
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .card-container{
+        width: 350px;
+      }

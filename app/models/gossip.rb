@@ -6,7 +6,7 @@ class Gossip < ApplicationRecord
 
 def self.search(search)
     if search #le champ est rempli
-        result = Gossip.where(['content LIKE ? or title LIKE ?', "%#{search}%", "%#{search}%"])
+        result = Gossip.where(['lower(content) LIKE ? or lower(title) LIKE ?', "%#{search.downcase}%", "%#{search.downcase}%"])
         if result
             @gossips = result
         else
