@@ -18,4 +18,28 @@ def self.search(search)
     end
 end
 
+def self.search_by_city(city_name)
+    list=[]
+    city = City.find_by(name: city_name)
+    puts city
+    if city #la recherche aboutit
+        users = User.where(city: city)
+        puts users
+        users.each do |user|
+             list.concat(Gossip.where(user: user))
+        end
+        list
+    else #le champ est vide
+        @gossips = Gossip.all
+    end
+end
+
+def self.get_gossip_list(users)
+    list = []
+    users.each do |user|
+        list.concat(Gossip.where(user: user))
+    end
+    list
+end
+
 end

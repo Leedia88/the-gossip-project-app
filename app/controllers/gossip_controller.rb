@@ -10,12 +10,14 @@ class GossipController < ApplicationController
 
     def show
         @gossip = Gossip.find(params[:id])
+        @comments = Comment.where(gossip_id: params[:id])
+        @users = User.full_name_list
         @user = User.find(@gossip.user_id)
         @tags = TagGossip.find_tags_id(params[:id].to_i)
+        @comment = Comment.new
     end
 
     def new
-        puts params.inspect
         @users = User.full_name_list
         @gossip = Gossip.new
         @tags = Tag.all

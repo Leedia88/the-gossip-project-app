@@ -14,13 +14,13 @@
                      <div class="name"><%=link_to "#{User.where(city_id: city.id).count} Gossipers", user_index_path, :class => "link-light"%> </div>
                 </div> 
                 <div class="numbers">
-                    <b class="comments-icon"><i class="fa fa-comment"></i> 10</b>
+                    <b class="comments-icon"><i class="fa fa-comment"></i><%=Gossip.search_by_city(city.name).count%></b>
                 </div>
             </div>            
         </div>
         <div class="card-info">
             <div class="moving">
-                    <h3><%=city.name%></h3>
+                    <h3><%=link_to "#{city.name}", city_path(city)  %></h3>
                     <p><%="\""+Faker::Movies::Ghostbusters.quote+"\""%></p>
                 </a>                
                 <b class="actions">

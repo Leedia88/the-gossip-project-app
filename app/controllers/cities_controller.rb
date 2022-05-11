@@ -1,13 +1,13 @@
 class CitiesController < ApplicationController
 
-    before_action set_city :set_city, only: %i[ show edit update destroy ]
+    before_action :set_city, only: %i[ show edit update destroy ]
 
     def index
         @cities = City.all
     end
 
     def show
-        
+        @gossips = Gossip.search_by_city(@city.name)
     end
 
     private

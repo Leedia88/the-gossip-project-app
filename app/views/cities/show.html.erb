@@ -1,19 +1,10 @@
-    <%= form_tag("/search", :method => "get") do %>
-    <%= label_tag(:q, "Search for gossips:") %>
-    <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag("Search") %>
-    <% end %> <br>
-    
-    <br>
-    <% flash.each do |type, msg| %>
-        <div class="alert alert-success"><%= msg %></div>
-    <% end %>
-    <div class="text-center">
-    <p>Si tu as du croustillant à nous partager, tu peux :</p>
-    <%=link_to "Create a new gossip", new_gossip_path, :class => "card-link btn btn-info" %><br><br>
-    </div>
-    <h3>Tous les potins THP! : </h3>
-    <div class="flex-container">
+<div class="background">
+
+
+<h3><%=@city.name%></h3>
+<p> Gossips :</p>
+
+<div class="flex-container">
             <% @gossips.each_with_index.map do |gossip, index| %>
                 <div class="card m-4 card-container">
                     <div class="card-header">
@@ -29,3 +20,5 @@
                 </div>
             <% end %>  
     </div>
+
+</div>

@@ -1,4 +1,8 @@
 
+<div class="containergit  text-center">
+<%=link_to "Back to Gossips", gossip_index_path, :class => "card-link btn btn-light" %>
+</div>
+
 <div class="container-fluid px-5">
   <% flash.each do |type, msg| %>
     <div class="alert alert-success mt-5" role="alert"><%= msg %></div>
@@ -6,17 +10,53 @@
 </div>
 
 <div class="card m-5">
-    <div class="card-header text-center">The author:   <%=link_to @user.first_name, user_path(@user), :class => "ml-2"%></div>
+    <div class="card-header text-center">The author:   <%=link_to @user.first_name, user_path(@user), :class => "ml-2"%><br>
+    From:  <%=link_to City.find(@user.city_id).name, city_path(City.find(@user.city_id)), :class => "ml-2"%></div>
     <div class="card-body">
-        <h5 class="card-title"><%=@gossip.title%>
+      
+        <h3 class="card-title"><%=@gossip.title%></h3>
           <%@tags.each do |tag_id|%>
             <span class="badge badge-pill" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
-          <%end%></h5>
-        <p class="card-text"><%=@gossip.content%></p>
-        <div>
+          <%end%>
+        <br><p class="card-text mt-3"><%=@gossip.content%></p>
+        <div class="text-center">
         <%=link_to "Edit", edit_gossip_path(@gossip), :class => "btn btn-info mb-3 text-center ml-5"%>
-        <%=link_to "Comment", new_gossip_comment_path(@gossip), :class => "btn btn-light mb-3 text-center"%>
+        <%# <%=link_to "Comment", new_gossip_comment_path(@gossip), :class => "btn btn-light mb-3 text-center"%> 
         <%=link_to "Delete", @gossip, :method => :delete, :class => "btn btn-outline-danger mb-3 text-center" %>
+        </div>
+        
+        <div class="m-4">
+        <h4>Comments</h4>
+        <ul class="list-group">
+        <% @comments.each do |comment| %>
+        <li class="list-group-item">
+        <tr>
+          <td><strong><%= User.find(comment.user_id).full_name%> :</strong></td>
+          <td><%= comment.content %></td> 
+          <%=link_to "Edit", edit_gossip_comment_path(@gossip, comment), :class => "link-comment badge badge-info mb-3 text-center"%>
+          <br>
+        </tr>
+        </li>
+        <% end %>
+        </div>
+        </ul>
+        <div class="m-4">
+         <h5>Add a Comment</h5>
+            <%=form_for @comment, url:gossip_comments_path(@gossip, @comment) do |f|%>
+                <%if @comment.errors.any? %>
+                    <% @comment.errors.full_messages.each do |msg| %>
+                        <div class="alert alert-danger"><%=msg%></div>
+                    <%end%>
+                <%end%>
+                <p> <%= f.label :user_id%> <br> 
+                <%= f.select(:user_id, options_for_select(@users, :selected => params[:user_id])) %>
+                </p>
+                <p><%= f.label :content%> <br>
+                <%= f.text_area(:content, {:class => "form-control"})%>
+                </p>
+                <p><%= f.submit({:class => "card-link btn btn-info"}) %>
+                </p>
+                <%end%>
         </div>
         <div class="card-footer bg-transparent border-success text-center">
         posted: <%=@gossip.created_at%>

@@ -50,7 +50,7 @@
       }
 
       .card-container{
-        max-width: 290px;
+        width: 290px;
       }
 
 
@@ -253,4 +253,12 @@
         outline-style: none;
     }
     
-    
+.link-comment{
+    border: 1px solid #00bbff;
+    color:#00bbff;
+}
+
+.link-comment:hover{
+    color:#FFFFFF;
+    background-color:#00bbff;
+}
