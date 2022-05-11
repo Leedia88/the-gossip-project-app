@@ -8,7 +8,7 @@
 <%end%>
 <p>
 <%= f.label :user_id%> <br> 
- <%= f.text_field(:user_id) %>
+ <%= f.text_field(:user_id, :readonly => "readonly") %>
 </p>
 <p>
 <%= f.label :title%> <br> 
@@ -19,7 +19,15 @@
 <%= f.text_area(:content, {:class => "form-control"})%>
 </p>
 <p>
-<%= f.submit({:value => "Update Gossip", :class => "card-link btn btn-info"}) %>
+Tags <br>
+<%@tags.each do |tag|%>
+    <%= label_tag tag.id, "#{tag.title}" %>
+    <%= check_box_tag 'tags_id[]', tag.id, @tags_ids.include?(tag.id)%>
+<%end%>
+</p>
+<p>
+<%= f.submit({:value => "Update", :class => "card-link btn btn-info"}) %>
+<%=link_to "Cancel", gossip_path(@gossip), :class => "card-link btn btn-light"%>
 </p>
 <%end%>
 

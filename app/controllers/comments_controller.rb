@@ -1,12 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment, only: %i[edit update destroy ]
 
-  def index
-
-  end
-
-  def show
-  end
 
   def new
     @comment = Comment.new
@@ -29,12 +23,12 @@ class CommentsController < ApplicationController
 
   def create
     @gossip = Gossip.find(params[:gossip_id])
-    @user = User.find(@gossip.user_id)
-    @users = User.full_name_list  
+    @user = current_user
+    @users = User.full_name_list
     @tags = TagGossip.find_tags_id(params[:gossip_id].to_i)
-    @comment = Comment.new(comment_params.merge(gossip_id: params[:gossip_id]))
+    @comment = Comment.new(comment_params.merge(commentable: @gossip))
       if @comment.save
-        @comments = Comment.where(gossip_id: params[:gossip_id])
+        # @comments = Comment.where(gossip_id: params[:gossip_id])
         redirect_to gossip_path(@gossip), notice: "Comment was successfully created."
       else
         render :new, status: :unprocessable_entity

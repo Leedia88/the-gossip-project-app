@@ -25,11 +25,12 @@ end
 
 #users
 puts "Users"
-60.times do
+30.times do
     firstname = Faker::Name.first_name
     lastname = Faker::Name.last_name
     email = firstname[0].downcase + "." + lastname.downcase + "@thp.com"
-    User.create!(first_name: firstname, last_name: lastname , email: email, description: Faker::Quote.jack_handey, city_id: Faker::Number.between(from: City.all.first.id, to: City.all.last.id), age: Faker::Number.within(range: 20..40))
+    password = Faker::Name.first_name + Faker::Name.first_name
+    User.create!(first_name: firstname, last_name: lastname , email: email, description: Faker::Quote.jack_handey, password: password, city_id: Faker::Number.between(from: City.all.first.id, to: City.all.last.id), age: Faker::Number.within(range: 20..40))
     # p "#{user.first_name} #{user.first_name}"
 end
 

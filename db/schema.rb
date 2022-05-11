@@ -24,11 +24,13 @@ ActiveRecord::Schema.define(version: 2022_05_10_121129) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.bigint "gossip_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gossip_id"], name: "index_comments_on_gossip_id"
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -70,6 +72,7 @@ ActiveRecord::Schema.define(version: 2022_05_10_121129) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "password_digest"
     t.text "description"
     t.string "email"
     t.integer "age"

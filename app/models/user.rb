@@ -3,6 +3,13 @@ class User < ApplicationRecord
     belongs_to :city
     has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage"
     has_many :received_messages, foreign_key: 'recipient_id', class_name: "PrivateMessage"
+    has_many :comments, as: :commentable
+    validates :password, presence: true, length: { minimum: 6 }
+    validates :age, numericality: { only_integer: true }
+    validates :email, 
+    format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
+
+    has_secure_password
 
     def self.full_name_list
         list =[]

@@ -25,6 +25,7 @@ Tags <br>
 <%= label_tag tag.id, "#{tag.title}" %>
 <%= check_box_tag 'tags_id[]', tag.id%>
 <%end%>
+</p>
 <p>
 <%= f.submit({:class => "card-link btn btn-light"}) %>
 </p>

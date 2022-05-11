@@ -1,0 +1,36 @@
+<div class="mx-5">
+
+<h2>Sign up</h2>
+
+<%=form_for :user, url: user_index_path do |f|%>
+    <%if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%=msg%></div>
+        <%end%>
+    <%end%><br>
+
+<p><%= f.label :city_id%> <br> 
+<%= f.select(:city_id, options_for_select(@cities, :selected => params[:city_id])) %></p>
+
+<p><%= f.label :first_name%> <br> 
+<%= f.text_field(:first_name, {:class => "form-control"})%>
+
+<%= f.label :last_name%> <br> 
+<%= f.text_field(:last_name, {:class => "form-control"})%></p>
+
+<p><%= f.label :email%> <br> 
+<%= f.text_field(:email, {:class => "form-control"})%>
+<%= f.label :password%> <br>
+<%= f.text_field(:password, {:class => "form-control", :type => "password"})%>
+<%= f.label :password_confirmation%><br>
+<%= f.text_field(:password_confirmation, {:class => "form-control", :type => "password"})%></p>
+<p><%= f.label :age%> <br> 
+<%= f.text_field(:age, {:class => "form-control"})%></p>
+<p><%= f.label :description%> <br> 
+<%= f.text_area(:description, {:class => "form-control"})%></p>
+
+<%= f.submit({:value => "Sign up", :class => "card-link btn btn-info"}) %>
+
+<%end%>
+
+</div>

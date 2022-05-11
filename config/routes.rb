@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :cities
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   resources :user , except: [:destroy]
 
   get '/search', to: 'gossip#search'

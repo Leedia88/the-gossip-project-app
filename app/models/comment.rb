@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
-    belongs_to :gossip
     belongs_to :user
+    belongs_to :commentable, polymorphic: true
+
 end

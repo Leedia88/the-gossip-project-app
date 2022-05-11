@@ -1,13 +1,14 @@
+   <% flash.each do |type, msg| %>
+    <div class="alert alert-<%= type %>"><%= msg %></div>
+    <% end %>
+    
     <%= form_tag("/search", :method => "get") do %>
     <%= label_tag(:q, "Search for gossips:") %>
     <%= text_field_tag(:search, params[:search]) %>
     <%= submit_tag("Search") %>
     <% end %> <br>
     
-    <br>
-    <% flash.each do |type, msg| %>
-        <div class="alert alert-success"><%= msg %></div>
-    <% end %>
+
     <div class="text-center">
     <p>Si tu as du croustillant à nous partager, tu peux :</p>
     <%=link_to "Create a new gossip", new_gossip_path, :class => "card-link btn btn-info" %><br><br>

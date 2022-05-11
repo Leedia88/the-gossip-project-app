@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
 
-    before_action :set_city, only: %i[ show edit update destroy ]
+    before_action :set_city, only: %i[show]
 
     def index
         @cities = City.all
