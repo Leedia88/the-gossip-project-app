@@ -31,7 +31,7 @@
                 </div>
                 <div class="card-body">
                     <p><h5><%=link_to gossip.title, gossip_path(gossip) %></h5></p>
-                    <%=gossip.likes.count%> <i class="bi bi-suit-heart"></i>&nbsp;&nbsp;<%=gossip.comments.count%>&nbsp;<i class="bi bi-chat-quote"></i><br>
+                    <%=gossip.likes.count%> <i class="bi bi-suit-heart-fill"></i>&nbsp;&nbsp;<%=gossip.comments.count%>&nbsp;<i class="bi bi-chat-left-text-fill"></i><br>
                 </div>
                 <div class="card-bottom">
                     <%TagGossip.find_tags_id(gossip.id).each do |tag_id|%>

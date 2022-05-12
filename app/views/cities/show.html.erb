@@ -8,34 +8,29 @@
             <% @gossips.each_with_index.map do |gossip, index| %>
                 <div class="card m-4 card-container">
                     <div class="card-header">
-                        <div class="row ">
-                            <div class="col-md-11">
-                            <%=link_to "Gossip n°#{index + 1}", gossip_path(gossip) %>&nbsp;&nbsp;<%="from :"%>&nbsp;&nbsp;<%="#{User.find(gossip.user_id).first_name}"%>
-                            </div>
-                            <div class="col-md-3>
+                            <span style="font-family:'Macondo';font-size:1.5rem;"><%=link_to "Gossip n°#{index + 1}", gossip_path(gossip) %>&nbsp;&nbsp;<%="from :"%>&nbsp;&nbsp;<%="#{User.find(gossip.user_id).first_name}"%></span>
                             <%if logged_in?%>
                                 <%if gossip.is_liked?(current_user)%>
-                                <%=button_to gossip_like_path(gossip.id, gossip.get_like(current_user).id), method: :delete, :class => "btn btn-primary liked" do %>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <%=button_to gossip_like_path(gossip.id, gossip.get_like(current_user).id), method: :delete, :class => "btn btn-primary liked" do %>
                                     <span><i class="bi bi-heart-fill"></i></span> <% end %>
-                            <%else%>
-                                        <%=button_to gossip_likes_path(gossip.id), :class => "btn btn-outline-primary disliked" do %>
-                                        <span><i class="bi bi-heart"></i></span> <%end%>
+                                <%else%>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <%=button_to gossip_likes_path(gossip.id), :class => "btn btn-outline-primary disliked" do %>
+                                    <span><i class="bi bi-heart"></i></span> <%end%>
                                 <%end%>
-                            
                             <%end%>
-                            </div>
                         </div>
-                    </div>
                     <div class="card-body">
-                        <p><%=gossip.title%></p>
+                        <p><h5><%=link_to gossip.title, gossip_path(gossip) %></h5></p>
+                    <%=gossip.likes.count%> <i class="bi bi-suit-heart-fill"></i>&nbsp;&nbsp;<%=gossip.comments.count%>&nbsp;<i class="bi bi-chat-left-text-fill"></i><br>
                     </div>
                     <div class="card-bottom text-center align-content pb-2">
                         <%TagGossip.find_tags_id(gossip.id).each do |tag_id|%>
-                        <span class="badge badge-pill m-2" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
+                        <span class="badge badge-pill m-2" style="color:white;background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
                         <%end%></h5>
                     </div>
                 </div>
             <% end %>  
-    </div>
 
 </div>
