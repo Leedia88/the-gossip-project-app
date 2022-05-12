@@ -45,7 +45,14 @@
         <%=link_to "Contact", contact_path, :class => "nav-item nav-link" %>
         </li>
         <%if logged_in?%>
-          <%=button_to "Log Out", session_path(session.id), :method => "delete", :class => "btn btn-info ms-3"  %>
+        <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle mx-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Log Out </button>
+          <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
+            <li><div class="text-center">&nbsp;&nbsp;<%="Logged as #{current_user.full_name.capitalize}"%></div></li>
+            <li><%=link_to "Log Out", session_path(session.id), :method => "delete", :class => "dropdown-item btn btn-light"  %></li>
+          </ul>
+        </div>
         <%else%>
         <div class="dropdown">
           <button class="btn btn-info dropdown-toggle mx-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

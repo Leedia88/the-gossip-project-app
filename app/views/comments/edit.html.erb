@@ -10,12 +10,12 @@
     <div class="card-body">
         <h5 class="card-title"><%=@gossip.title%>
           <%@tags.each do |tag_id|%>
-            <span class="badge badge-pill" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
+            <span class="badge badge-pill" style="color:white;background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
           <%end%></h5>
         <p class="card-text"><%=@gossip.content%></p>
         <div>
             <%=link_to "Cancel", gossip_path(@gossip), :class => "btn btn-light mb-3 text-center ml-5"%>
-            <%=link_to "Delete", gossip_comment_path(@comment) , :method => :delete, :class => "btn btn-outline-danger mb-3 text-center ml-5"%>
+            <%=link_to "Delete", gossip_comment_path(@gossip, @comment) , :method => :delete, :class => "btn btn-outline-danger mb-3 text-center ml-5"%>
 
             <h3>Edit a Comment</h3>
             <%=form_for @comment, url:gossip_comment_path(@gossip, @comment), method: :patch do |f|%>
@@ -24,8 +24,9 @@
                         <div class="alert alert-danger"><%=msg%></div>
                     <%end%>
                 <%end%>
-                <p> <%= f.label :user_id%> <br> 
-                <%= f.select(:user_id, options_for_select(@users, :selected => params[:user_id])) %>
+                <p>
+                <%= f.label :user_id%> <br> 
+                <%= f.text_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
                 </p>
                 <p><%= f.label :content%> <br>
                 <%= f.text_area(:content, {:class => "form-control"})%>

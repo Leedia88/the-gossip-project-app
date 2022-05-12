@@ -1,18 +1,18 @@
 class LikesController < ApplicationController
   before_action :set_gossip, only: %i[create, destroy]
 
+
+
   def create
     puts params
     @gossip = Gossip.find(params[:gossip_id])
     like = Like.create!(gossip: @gossip, user: current_user)
     if like.save
-      puts params
-      # redirect_to :back
       redirect_to gossip_path(@gossip)
     else
-      puts params
       redirect_to root_path
     end
+ 
   end
 
   def destroy
@@ -23,6 +23,11 @@ class LikesController < ApplicationController
 
   def set_gossip
     @gossip = Gossip.find(params[:gossip_id])
+  end
+
+  private
+  def redirect_to_default
+    redirect_to root_path
   end
 
 end

@@ -45,9 +45,10 @@
               <li class="list-group-item">
               <tr>
               <td><strong><%= User.find(comment.user_id).full_name%> :</strong></td>
-              <td><%= comment.content %></td> 
-              <%=link_to "Edit", edit_gossip_comment_path(@gossip, comment), :class => "link-comment badge badge-info mb-3 text-center"%>
-              <br>
+              <td><%= comment.content %></td>
+              <%if current_user == comment.user %> 
+              <%=link_to "Edit", edit_gossip_comment_path(@gossip, comment), :class => "badge badge-info mb-3 text-center", :style => "background-color:cyan"%>
+              <%end%><br>
               </tr>
               </li>
             <% end %>

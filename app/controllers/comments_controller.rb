@@ -10,9 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    puts params.inspect
     @gossip = Gossip.find(params[:gossip_id])
-    @comment = Comment.find(params[:id])
     @usergossip = User.find(@gossip.user_id)  
     @usercomment = User.find(@comment.user_id)
     @users = User.full_name_list
@@ -52,6 +50,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    puts @comment
     @comment.destroy
     @gossip = Gossip.find(params[:gossip_id])
     redirect_to gossip_path(@gossip), notice: "Comment was successfully destroyed."
