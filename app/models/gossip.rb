@@ -2,6 +2,7 @@ class Gossip < ApplicationRecord
     has_many :comments, as: :commentable
     has_many :tags_gossips
     has_many :tags, through: :tags_gossips
+    has_many :likes
     belongs_to :user
     validates :title, presence: true
     validates :content, presence: true
@@ -41,6 +42,18 @@ def self.get_gossip_list(users)
         list.concat(Gossip.where(user: user))
     end
     list
+end
+
+def count_likes
+    Like.where(gossip_id: self.id).count
+end
+
+def is_liked?(user)
+    Like.find_by(user: user, gossip_id: self.id)!= nil
+end
+
+def get_like(user)
+    Like.find_by(user: user, gossip_id: self.id)
 end
 
 end

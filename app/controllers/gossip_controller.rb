@@ -1,39 +1,41 @@
 class GossipController < ApplicationController
-    before_action :set_gossip, only: %i[ show edit update destroy ]
+    before_action :set_gossip, only: %i[ show edit update destroy liked unlike]
+    before_action :authenticate_user, only: %i[new, destroy]
 
     def index
-        @gossips = Gossip.all.order(:id)
+        @gossips = Gossip.search(params[:search]).order(:id)
     end
 
     def search
-        @gossips = Gossip.search(params[:search])
+        @gossips = Gossip.all.order(:id)
     end
 
     def show
         @comments = @gossip.comments
         @users = User.full_name_list
         @user = User.find(@gossip.user_id)
-        @tags = TagGossip.find_tags_id(@gossip)
+        @tags = TagGossip.find_tags(@gossip)
         @comment = Comment.new
+        @city = City.find(@user.city_id)
+        if @gossip.is_liked?(@user)
+            @like = gossip.get_like(@user)
+        end
     end
 
     def new
-        unless logged_in?
-            flash[:warning] = "You should log in to gossip!"
-            redirect_to new_session_path
-        end
+        puts params
         @users = User.full_name_list
         @gossip = Gossip.new
         @tags = Tag.all
     end
 
     def create
+        puts params
         tag_param = params[:tags_id]
         @gossip = Gossip.new(gossip_params)
-            if @gossip.user == current_user
                 if @gossip.save
                     tag_param.each do |tag_id|
-                        TagGossip.new(tag_id: tag_id, gossip_id: @gossip.id)
+                        TagGossip.create(tag_id: tag_id, gossip_id: @gossip.id)
                     end
                     flash[:success] = "Gossip Created"
                     redirect_to gossip_index_path
@@ -41,10 +43,6 @@ class GossipController < ApplicationController
                     flash[:danger] = "Error : gossip not saved"
                     render :new
                 end
-            else
-                flash[:danger] = "Error with user selected"
-                render :new
-            end
     end
 
     def edit
@@ -67,7 +65,6 @@ class GossipController < ApplicationController
         redirect_to gossip_index_path
     end
 
-
     def search
         @gossips = Gossip.search(params[:search])
     end
@@ -83,8 +80,8 @@ class GossipController < ApplicationController
     end
 
     def authenticate_user
-        unless current_user
-          flash[:danger] = "Pour y accèder, tu dois être connectée!"
+        unless logged_in?
+          flash[:warning] = "You should log in to gossip!"
           redirect_to new_session_path
         end
     end

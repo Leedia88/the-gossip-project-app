@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'faker'
 gem 'table_print'
 gem 'bcrypt'
+gem 'font-awesome-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

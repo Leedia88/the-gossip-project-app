@@ -10,19 +10,25 @@
 </div>
 
 <div class="card m-5">
-    <div class="card-header text-center">The author:   <%=link_to @user.first_name, user_path(@user), :class => "ml-2"%><br>
-    From:  <%=link_to City.find(@user.city_id).name, city_path(City.find(@user.city_id)), :class => "ml-2"%></div>
+    <div class="card-header text-center ">The author:   <%=link_to @user.first_name, user_path(@user), :class => "me-5"%>
+    From:  <%=link_to @city.name, city_path(@city), :class => "me-5"%> 
+    <%if@gossip.is_liked?(current_user)%>
+    <%=link_to fa_icon("bi-heart-fill"),likes_destroy_path(@gossip, @like), :methode => "delete", :class => "bi bi-heart-fill btn btn-primary"%>
+    <%else%>
+    <%=link_to fa_icon("bi-heart-fill"),likes_create_path, :class => "bi bi-heart-fill btn btn-outline-primary disliked"%>
+    <%end%>
+    <span><%=@gossip.count_likes%> Likes</span>
+    </div>
     <div class="card-body">
-      
         <h3 class="card-title"><%=@gossip.title%></h3>
-          <%@tags.each do |tag_id|%>
-            <span class="badge badge-pill" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
+          <%@tags.each do |tag|%>
+            <span class="badge badge-pill" style="background-color: <%=tag.color%>;"><%=tag.title%></span>
           <%end%>
         <br><p class="card-text mt-3"><%=@gossip.content%></p>
         <%if logged_in?%>
               <div class="text-center">
               <%=link_to "Edit", edit_gossip_path(@gossip), :class => "btn btn-info mb-3 text-center ml-5"%>
-              <%=link_to "Delete", @gossip, :method => :delete, :class => "btn btn-outline-danger mb-3 text-center" %>
+              <%=link_to "Delete", @gossip, :method => :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-outline-danger mb-3 text-center" %>
               </div>
         <div class="m-4">
           <h4>Comments</h4>
@@ -48,8 +54,9 @@
                         <div class="alert alert-danger"><%=msg%></div>
                     <%end%>
                 <%end%>
-                <p> <%= f.label :user_id%> <br> 
-                <%= f.select(:user_id, options_for_select(@users, :selected => params[:user_id])) %>
+                <p>
+                <%= f.label :user_id%> <br> 
+                <%= f.text_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
                 </p>
                 <p><%= f.label :content%> <br>
                 <%= f.text_area(:content, {:class => "form-control"})%>

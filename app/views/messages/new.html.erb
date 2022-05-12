@@ -1,15 +1,10 @@
-<h1>Message#new</h1>
-<p>Find me in app/views/message/new.html.erb</p>
+
  <h1>Contact Form</h1>
-  <%= form_for @contact do |f| %>
+  <%= form_for :message do |f| %>
     <div class="col-md-6">
         <p>
-         <%= f.label :user_id%> <br> 
-         <%= f.select(:user_id, options_for_select(@users, :selected => params[:user_id])) %>
-        </p>
-        <p>
-         <%= f.label :user_id%> <br> 
-         <%= f.select(:user_id, options_for_select(@users, :selected => params[:user_id])) %>
+         <%= f.label :recipient%> <br> 
+         <%= f.select(:recipient, options_for_select(@users, :selected => params[:user_id])) %>
         </p>
          <%= f.label :email %></br>
          <%= f.text_field :email, required: true, class: "contact-form-text-area" %></br>

@@ -9,7 +9,7 @@
     <%end%>
 <p>
 <%= f.label :user_id%> <br> 
- <%= f.select(:user_id, options_for_select(@users, :selected => params[:user_id])) %>
+ <%= f.text_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
 </p>
 <p>
 <%= f.label :title%> <br> 
