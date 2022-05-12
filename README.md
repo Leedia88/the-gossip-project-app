@@ -16,12 +16,15 @@ application up and running....
 
 # Pinciples
 
-* A user can post and edit gossips on the app
+* A user can sign up to The Gossip Project
+* A user can post and edit gossips on the app if logged in
 * A gossip has one or several tags
 * A gossip can search keywords to find gossips
+* A user can access gossips per city
+* A user can comment a gossip, edit and delete his comments
 
 # Features to be implemented
 
-* A user can send a private message
-* A user can comment a gossip
+* A user can like a gossip
 * A user can comment a comment
+* A user can send a private message
