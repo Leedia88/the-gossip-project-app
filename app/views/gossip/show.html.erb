@@ -10,13 +10,14 @@
 </div>
 
 <div class="card m-5">
-    <div class="card-header d-flex space-around text-center ">The author:  &nbsp;  <%=link_to @user.first_name, user_path(@user), :class => "me-5"%>
-    From: &nbsp; <%=link_to @city.name, city_path(@city), :class => "me-5"%> 
+    <div class="card-header d-flex space-around text-center ">
+    <span style="font-family:'Macondo';font-size:1.5rem;">The author:  &nbsp;  <%=link_to @user.first_name, user_path(@user), :class => "me-5"%>
+    From: &nbsp; <%=link_to @city.name, city_path(@city), :class => "me-5"%> </span>
     </div>
     <div class="card-body">
         <h3 class="card-title"><%=@gossip.title%></h3>
           <%@tags.each do |tag|%>
-            <span class="badge badge-pill" style="background-color: <%=tag.color%>;"><%=tag.title%></span>
+            <span class="badge badge-pill" style="color:white;background-color: <%=tag.color%>;"><%=tag.title%></span>
           <%end%>
         <br><p class="card-text mt-3"><%=@gossip.content%></p>
               <div class="text-center">
@@ -30,7 +31,7 @@
                   <span><i class="bi bi-heart-fill"></i></span> <% end %>
             <%else%>
                 <%=button_to gossip_likes_path(@gossip.id), :class => "btn btn-outline-primary disliked" do %>
-                  <span><i class="bi bi-heart-fill"></i></span> <%end%>
+                  <span><i class="bi bi-heart"></i></span> <%end%>
             <%end%>
           <%end%>
           <span><%=@gossip.count_likes%> Likes</span>
@@ -79,7 +80,7 @@
         </div>
   </div>
 </div>
-<div class="container m-5 text-center">
+<div class="container-fluid text-center">
 <%=link_to "Back to Gossips", gossip_index_path, :class => "card-link btn btn-light" %>
 </div>
     

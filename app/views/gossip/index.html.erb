@@ -1,7 +1,9 @@
     <div class="text-center"><h1>Welcome!</h1></div>
    
    <% flash.each do |type, msg| %>
-    <div class="alert alert-<%= type %>"><%= msg %></div>
+    <div class=" alert alert-<%= type %> alert-dismissable fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= msg %></div>
     <% end %>
       
 
@@ -13,8 +15,8 @@
     <div class="flex-container">
         <% @gossips.each_with_index.map do |gossip, index| %>
             <div class="card m-4 card-container">
-                <div class="card-header space-around">
-                    <%=link_to "N°#{index + 1}", gossip_path(gossip) %>&nbsp;&nbsp;<%="by #{User.find(gossip.user_id).first_name}"%>
+                <div class="card-index card-header space-around">
+                    <span style="font-family:'Macondo';font-size:1.5rem;"><%=link_to "N°#{index + 1}", gossip_path(gossip) %>&nbsp;&nbsp;<%="by #{User.find(gossip.user_id).first_name}"%></span>
                      <%if logged_in?%>
                         <%if gossip.is_liked?(current_user)%>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -28,11 +30,12 @@
                     <%end%>
                 </div>
                 <div class="card-body">
-                    <p><%=gossip.title%></p><br>
+                    <p><h5><%=link_to gossip.title, gossip_path(gossip) %></h5></p>
+                    <%=gossip.likes.count%> <i class="bi bi-suit-heart"></i>&nbsp;&nbsp;<%=gossip.comments.count%>&nbsp;<i class="bi bi-chat-quote"></i><br>
                 </div>
                 <div class="card-bottom">
                     <%TagGossip.find_tags_id(gossip.id).each do |tag_id|%>
-                        <span class="badge badge-pill m-2" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
+                        <span class="tag badge badge-pill m-2" style="color:white;background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
                     <%end%>
                 </div>
             </div>

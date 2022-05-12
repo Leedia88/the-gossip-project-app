@@ -35,11 +35,12 @@ puts "Users"
 end
 
 #gossips
-50.times do
+60.times do
     Gossip.create!(title: Faker::Fantasy::Tolkien.poem, content: Faker::Quote.matz, user_id: Faker::Number.between(from: User.all.first.id, to: User.all.last.id) )
 end
 
 #tags
+puts "Tags"
 colors = ["#01A490", "#00AEEF", "#ED1C24", "Coral", "#FFEE5B", "#7252E7", "Aquamarine" ,"#C2135A", "Orange","Purple"]
 10.times do
     color = colors.pop()
@@ -58,14 +59,19 @@ end
         end
     end
 
-
-20.times do
+puts "Likes"
+60.times do
     gossip = Gossip.all.sample
     user = User.all.sample
     like = Like.new(gossip: gossip, user: user)
     if like.save
-        puts "like saved"
     end
+end
+
+puts "Comments"
+40.times do
+    content= Faker::TvShows::BrooklynNineNine.quote
+    Gossip.all.sample.comments.create(content: content, user: User.all.sample)
 end
 
 #Private Messages

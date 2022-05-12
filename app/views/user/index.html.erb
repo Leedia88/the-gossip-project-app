@@ -6,7 +6,8 @@
             <div class="card-body text-center" style="background-color:#<%="%06x" % (rand * 0xffffff)%>";>
                 <img src="https://source.unsplash.com/200x200/?portrait?sig=<%=rand(1..150)%>" 
                 alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                <h5 class="my-3"><%=user.first_name%></h5>
+                <h5 class="my-3">
+                <%=link_to user.first_name, user_path(user), :style => "color:black;"%></h5>
                 <div class="d-flex justify-content-center"> 
                     <%=link_to "Message", new_message_path, :class => "btn btn-outline-primary ms-1"%>
                 </div>

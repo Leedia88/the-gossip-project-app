@@ -50,7 +50,7 @@
       }
 
       .card-container{
-        width: 350px;
+        width: 300px;
       }
 
 
@@ -209,7 +209,7 @@
         height: 55px;
         font-size: 14px;
         min-width: 100px;
-        max-width: 300px;
+        max-width: 500px;
         width: auto;
         height: auto;
     }
@@ -269,9 +269,13 @@
 } */
 
 .card-city{
-    width:  350px;;
+    width:  450px;;
 }
 
 .inline{
     display: inline;
+  }
+
+  .tag{
+    color:white;
   }

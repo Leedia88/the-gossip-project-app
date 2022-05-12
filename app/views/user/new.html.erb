@@ -1,4 +1,4 @@
-<div class="mx-5">
+<div class="m-5">
 
 <h2>Sign up</h2>
 
@@ -9,15 +9,46 @@
         <%end%>
     <%end%><br>
 
-<p><%= f.label :city_id%> <br> 
-<%= f.select(:city_id, options_for_select(@cities, :selected => params[:city_id])) %></p>
+<%# <p><%= f.label :city_id%>
+<%# <%= f.select(:city_id, options_for_select(@cities, :selected => params[:city_id])) %>
+
+<p><%= f.label :city_id%> 
+<%= f.text_field(:city_id, {:class => "form-control"})%></p>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Don't know your city id?
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cities available</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <%@cities.each do |city|%>
+        <tr>
+            <td><%=city[1]%></td>
+            <td><%=city[0]%></td><br><br>
+        </tr>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
 
 <p><%= f.label :first_name%> <br> 
 <%= f.text_field(:first_name, {:class => "form-control"})%>
-
 <%= f.label :last_name%> <br> 
 <%= f.text_field(:last_name, {:class => "form-control"})%></p>
-
 <p><%= f.label :email%> <br> 
 <%= f.text_field(:email, {:class => "form-control"})%>
 <%= f.label :password%> <br>
@@ -27,7 +58,7 @@
 <p><%= f.label :age%> <br> 
 <%= f.text_field(:age, {:class => "form-control"})%></p>
 <p><%= f.label :description%> <br> 
-<%= f.text_area(:description, {:class => "form-control"})%></p>
+<%= f.text_area(:description, {:rows => 8, :cols => 40, :class => "form-control"})%></p>
 
 <%= f.submit({:value => "Sign up", :class => "card-link btn btn-info"}) %>
 

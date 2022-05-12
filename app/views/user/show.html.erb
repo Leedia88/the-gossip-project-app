@@ -1,6 +1,6 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-lg-6 mb-4 mb-lg-0">
+      <div class="col col-lg-6 mb-4 mb-lg-0" style="width:100%;">
         <div class="card mb-3" style="border-radius: .5rem;">
           <div class="row g-0">
             <div class="col-md-4 gradient-custom text-center text-white"
@@ -10,7 +10,7 @@
               <h5><%=@user.full_name%></h5>
               <p><%=@user.city.name%></p>
               <i class="far fa-edit mb-5"></i>
-              <%=link_to "Message", message_new_path, :class => "btn btn-outline-primary ms-1"%>
+              <%=link_to "Message", new_message_path, :class => "btn btn-outline-primary ms-1"%>
             </div>
             <div class="col-md-8">
               <div class="card-body p-4">

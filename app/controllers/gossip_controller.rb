@@ -19,7 +19,7 @@ class GossipController < ApplicationController
         @comment = Comment.new
         @city = City.find(@user.city_id)
         if @gossip.is_liked?(@user)
-            @like = gossip.get_like(@user)
+            @like = @gossip.get_like(@user)
         end
     end
 
