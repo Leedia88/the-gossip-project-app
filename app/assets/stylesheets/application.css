@@ -50,7 +50,7 @@
       }
 
       .card-container{
-        width: 290px;
+        width: 350px;
       }
 
 
@@ -253,7 +253,7 @@
         outline-style: none;
     }
     
-.link-comment{
+/* .link-comment{
     border: 1px solid #00bbff;
     color:#00bbff;
 }
@@ -266,4 +266,12 @@
 .disliked .link-comment{
     display: inline;
     border : 0;
+} */
+
+.card-city{
+    width:  350px;;
 }
+
+.inline{
+    display: inline;
+  }

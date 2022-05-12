@@ -1,13 +1,9 @@
+    <div class="text-center"><h1>Welcome!</h1></div>
+   
    <% flash.each do |type, msg| %>
     <div class="alert alert-<%= type %>"><%= msg %></div>
     <% end %>
-    
-    <%= form_tag(gossip_index_path, :method => "get") do %>
-    <%= label_tag(:search, "Search for gossips:") %>
-    <%= text_field_tag(:search, params[:search]) %>
-    <%= submit_tag("Search") %>
-    <% end %> <br>
-    
+      
 
     <div class="text-center">
     <p>Si tu as du croustillant à nous partager, tu peux :</p>
@@ -15,29 +11,32 @@
     </div>
     <h3>Tous les potins THP! : </h3>
     <div class="flex-container">
-            <% @gossips.each_with_index.map do |gossip, index| %>
-                <div class="card m-4 card-container">
-                    <div class="card-header d-flex space-around">
-                        <%=link_to "Gossip n°#{index + 1}", gossip_path(gossip) %>&nbsp;&nbsp;<%="  from #{User.find(gossip.user_id).first_name}"%>
-                        <%if logged_in?%>
+        <% @gossips.each_with_index.map do |gossip, index| %>
+            <div class="card m-4 card-container">
+                <div class="card-header space-around">
+                    <%=link_to "N°#{index + 1}", gossip_path(gossip) %>&nbsp;&nbsp;<%="by #{User.find(gossip.user_id).first_name}"%>
+                     <%if logged_in?%>
                         <%if gossip.is_liked?(current_user)%>
-                            &nbsp;&nbsp;&nbsp;
-                            <%=button_to gossip_like_path(gossip.id, gossip.get_like(current_user).id), method: :delete, :class => "btn btn-primary liked" do %>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <%=button_to gossip_like_path(gossip.id, gossip.get_like(current_user).id), method: :delete, :class => "btn btn-primary liked float-end" do %>
                                 <span><i class="bi bi-heart-fill"></i></span> <% end %>
                         <%else%>
-                            &nbsp;&nbsp;&nbsp;
-                            <%=button_to gossip_likes_path(gossip.id), :class => "btn btn-outline-primary disliked" do %>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <%=button_to gossip_likes_path(gossip.id), :class => "btn btn-outline-primary disliked float-end" do %>
                                 <span><i class="bi bi-heart"></i></span> <%end%>
-                            <%end%>
                         <%end%>
-                    </div>
-                        <%=gossip.title%></p><br>
-                    
-                    <div class="card-bottom">
-                        <%TagGossip.find_tags_id(gossip.id).each do |tag_id|%>
-                        <span class="badge badge-pill m-2" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
-                        <%end%></h5>
-                    </div>
+                    <%end%>
                 </div>
-            <% end %>  
+                <div class="card-body">
+                    <p><%=gossip.title%></p><br>
+                </div>
+                <div class="card-bottom">
+                    <%TagGossip.find_tags_id(gossip.id).each do |tag_id|%>
+                        <span class="badge badge-pill m-2" style="background-color: <%=Tag.find(tag_id).color%>;"><%=Tag.find(tag_id).title%></span>
+                    <%end%>
+                </div>
+            </div>
+        <% end %>
     </div>
+ 
+

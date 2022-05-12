@@ -1,7 +1,7 @@
 <div class="flex-container">
 
 <% @cities.each do |city|%>
-    <div class="card card-small m-3">
+    <div class="card-city card card-small m-3">
         <div class="thumbnail">           
                 <img alt="Opt alp thumbnail" src="https://source.unsplash.com/random/300x170/?town/<%=rand(1..150)%>">
                     <div class="thumb-cover"></div>
@@ -14,7 +14,7 @@
                      <div class="name"><%=link_to "#{User.where(city_id: city.id).count} Gossipers", user_index_path, :class => "link-light"%> </div>
                 </div> 
                 <div class="numbers">
-                    <b class="comments-icon"><i class="fa fa-comment"></i><%=Gossip.search_by_city(city.name).count%></b>
+                    <b class="comments-icon"><i class="bi bi-chat-quote"></i>&nbsp;&nbsp;<%=Gossip.search_by_city(city.name).count%></b>
                 </div>
             </div>            
         </div>

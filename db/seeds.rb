@@ -50,27 +50,34 @@ end
 #tags_gossips
     Gossip.all.each do |gossip|
         nb = rand(1..3)
-        # puts "GOSSIP ##{gossip.id} : #{gossip.title} "
-        # puts gossip.content
-        # p "Tags :"
+
         nb.times do
             tag = TagGossip.new(tag_id: Faker::Number.between(from: Tag.all.first.id, to: Tag.all.last.id), gossip_id: gossip.id )
             if tag.save   
-                # p Tag.find(tag.tag_id).title + "  " + Tag.find(tag.tag_id).color
             end
         end
     end
 
+
+20.times do
+    gossip = Gossip.all.sample
+    user = User.all.sample
+    like = Like.new(gossip: gossip, user: user)
+    if like.save
+        puts "like saved"
+    end
+end
+
 #Private Messages
-5.times do
-    pm = PrivateMessage.new(content: Faker::Books::Lovecraft.sentence, sender_id: Faker::Number.between(from: User.all.first.id, to: User.all.last.id), recipient_id: Faker::Number.between(from: User.all.first.id, to: User.all.last.id))
-    if pm.save
-        # puts "message : #{pm.content}"
-        # puts "sent by : #{User.find(pm.sender_id).first_name} #{User.find(pm.sender_id).last_name}"
-        # puts "to : #{User.find(pm.recipient_id).first_name} #{User.find(pm.recipient_id).last_name}"+"\n"
-    else
-        puts "message non envoyé!"+"\n"
-    end  
-end 
+# 5.times do
+#     pm = PrivateMessage.new(content: Faker::Books::Lovecraft.sentence, sender_id: Faker::Number.between(from: User.all.first.id, to: User.all.last.id), recipient_id: Faker::Number.between(from: User.all.first.id, to: User.all.last.id))
+#     if pm.save
+#         # puts "message : #{pm.content}"
+#         # puts "sent by : #{User.find(pm.sender_id).first_name} #{User.find(pm.sender_id).last_name}"
+#         # puts "to : #{User.find(pm.recipient_id).first_name} #{User.find(pm.recipient_id).last_name}"+"\n"
+#     else
+#         puts "message non envoyé!"+"\n"
+#     end  
+# end 
 
 # puts "fini!!!"

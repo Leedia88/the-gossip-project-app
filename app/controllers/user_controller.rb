@@ -20,8 +20,9 @@ def create
     @cities = City.name_list
     @user = User.new(user_params)
     if @user.save
-        redirect_to user_index_path
+        redirect_to sew_session_path
     else
+        flash[:alert]= "User not saved"
         render :new
     end
 end
