@@ -42,9 +42,9 @@ end
 #tags
 colors = ["#01A490", "#00AEEF", "#ED1C24", "Coral", "#FFEE5B", "#7252E7", "Aquamarine" ,"#C2135A", "Orange","Purple"]
 10.times do
-
     color = colors.pop()
-    Tag.create!(title: Faker::Emotion.noun, color: color)
+    title = "#"+Faker::Emotion.noun
+    Tag.create!(title: title, color: color)
 end
 
 #tags_gossips

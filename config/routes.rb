@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'gossip/:id/likes/create', to: 'likes#create', as: 'likes_create'
-  get 'gossip/:id/likes/destroy', to: 'likes#destroy', as: 'likes_destroy'
   get '/', to: 'gossip#index', as: 'root'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :gossip  do
     resources :comments
+    resources :likes, only: [:create, :destroy]
   end
+
   resources :messages
   resources :cities
   resources :sessions, only: [:new, :create, :destroy]

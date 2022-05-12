@@ -45,7 +45,7 @@ def self.get_gossip_list(users)
 end
 
 def count_likes
-    Like.where(gossip_id: self.id).count
+    self.likes.count
 end
 
 def is_liked?(user)

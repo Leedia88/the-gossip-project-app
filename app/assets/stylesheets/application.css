@@ -262,3 +262,8 @@
     color:#FFFFFF;
     background-color:#00bbff;
 }
+
+.disliked .link-comment{
+    display: inline;
+    border : 0;
+}

@@ -1,6 +1,7 @@
 class GossipController < ApplicationController
-    before_action :set_gossip, only: %i[ show edit update destroy liked unlike]
-    before_action :authenticate_user, only: %i[new, destroy]
+    before_action :set_gossip, only:[ :show, :edit, :update, :destroy]
+    before_action :authenticate_user, only: [:new, :create]
+    before_action :authenticate_current_user, only: [:edit, :update, :destroy]
 
     def index
         @gossips = Gossip.search(params[:search]).order(:id)
@@ -83,6 +84,13 @@ class GossipController < ApplicationController
         unless logged_in?
           flash[:warning] = "You should log in to gossip!"
           redirect_to new_session_path
+        end
+    end
+
+    def authenticate_current_user
+        unless log_in(@gossip.user)
+          flash[:warning] = "You are not authorized to modify/delete this gossip!"
+          redirect_to gossip_index_path
         end
     end
 
