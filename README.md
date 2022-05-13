@@ -10,7 +10,7 @@ application up and running....
 - Install the gems  
   `bundle install`
 - Implement the database:  
- `rails db;create`  
+ `rails db:create`  
  `rails db:migrate`    
  `rails db:seed`  
    
