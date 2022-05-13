@@ -23,4 +23,10 @@ class User < ApplicationRecord
         (self.first_name + " "+self.last_name)
     end
 
+    def remember(remember_token)
+        remember_digest = BCrypt::Password.create(remember_token)
+        self.update(remember_digest: remember_digest)
+    end
+    
+
 end

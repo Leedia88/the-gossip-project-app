@@ -5,8 +5,9 @@ class SessionsController < ApplicationController
         puts session_params[:email]
         @user = User.find_by(email: session_params[:email])
         if @user && @user.authenticate(session_params[:password])
-            session[:user_id] = @user.id
-            puts session
+            login(user)
+            remember(user)
+            puts cookies
             flash[:success] = "Bienvenue sur ta session, #{@user.full_name.capitalize}!"
             redirect_to root_path
         else
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        session.delete(:user_id)
+        log_out(current_user)
         flash[:info] = "Session bien terminée!"
         redirect_to root_path
     end
@@ -26,5 +27,7 @@ class SessionsController < ApplicationController
     def session_params
         params.require(:session).permit(:email, :password)
     end
+
+    
 
 end

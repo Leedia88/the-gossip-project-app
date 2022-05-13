@@ -19,7 +19,7 @@ class LikesController < ApplicationController
   def destroy
     @gossip = Gossip.find(params[:gossip_id])
     @gossip.get_like(current_user).destroy
-    redirect_to gossip_path(@gossip)
+    redirect_back(fallback_location: root_path)
   end
 
   def set_gossip
