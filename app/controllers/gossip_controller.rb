@@ -35,8 +35,10 @@ class GossipController < ApplicationController
         tag_param = params[:tags_id]
         @gossip = Gossip.new(gossip_params)
                 if @gossip.save
-                    tag_param.each do |tag_id|
-                        TagGossip.create(tag_id: tag_id, gossip_id: @gossip.id)
+                    if tag_param
+                        tag_param.each do |tag_id|
+                            TagGossip.create(tag_id: tag_id, gossip_id: @gossip.id)
+                        end
                     end
                     flash[:success] = "Gossip Created"
                     redirect_to gossip_index_path
