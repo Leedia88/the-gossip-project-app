@@ -7,14 +7,14 @@ application up and running....
 
 * Configuration : Ruby version 2.7.4, Rails v.5.2.7.1
 - Clone this repository with git
-- Install the gems
+- Install the gems  
   `bundle install`
 - Implement the database:  
- `rails db;create`
- `rails db:migrate`  
- `rails db:seed`
- `rails s`
-- Acess with http://localhost:3000/
+ `rails db;create`  
+ `rails db:migrate`    
+ `rails db:seed`  
+ `rails s`  
+- Acess with http ://localhost:3000/
 
 
 # Pinciples
