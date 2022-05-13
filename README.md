@@ -6,13 +6,16 @@ application up and running....
 ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white) 
 
 * Configuration : Ruby version 2.7.4, Rails v.5.2.7.1
-
-- Bundle install
-- to implement the database:  
+- Clone this repository with git
+- Install the gems
+  `bundle install`
+- Implement the database:  
+ `rails db;create`
  `rails db:migrate`  
- `rails db:seed`  
+ `rails db:seed`
+ `rails s`
+- Acess with http://localhost:3000/
 
-=> It is gonna drop and recreate the table, and launch the seed file. Thanks to the 'Faker' gem file.
 
 # Pinciples
 
@@ -22,9 +25,9 @@ application up and running....
 * A gossip can search keywords to find gossips
 * A user can access gossips per city
 * A user can comment a gossip, edit and delete his comments
+* A user can like a gossip
 
 # Features to be implemented
 
-* A user can like a gossip
 * A user can comment a comment
 * A user can send a private message
