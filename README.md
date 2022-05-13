@@ -13,8 +13,9 @@ application up and running....
  `rails db;create`  
  `rails db:migrate`    
  `rails db:seed`  
- `rails s`  
-- Acess with http ://localhost:3000/
+   
+- Acess with http ://localhost:3000/  
+ `rails s`
 
 
 # Pinciples
