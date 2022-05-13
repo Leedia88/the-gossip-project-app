@@ -8,7 +8,8 @@ class LikesController < ApplicationController
     @gossip = Gossip.find(params[:gossip_id])
     like = Like.create!(gossip: @gossip, user: current_user)
     if like.save
-      redirect_to gossip_path(@gossip)
+      redirect_back(fallback_location: root_path)
+      # redirect_to gossip_path(@gossip)
     else
       redirect_to root_path
     end
