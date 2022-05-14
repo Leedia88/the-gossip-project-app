@@ -5,6 +5,7 @@ class GossipController < ApplicationController
 
     def index
         @gossips = Gossip.search(params[:search]).order(:id)
+        puts current_user
     end
 
     def search

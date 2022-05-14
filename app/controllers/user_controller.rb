@@ -12,7 +12,7 @@ end
 def new
     @cities = City.name_list
     @user = User.new
-
+    @remember = false
 end
 
 def create
@@ -20,7 +20,8 @@ def create
     @cities = City.name_list
     @user = User.new(user_params)
     if @user.save
-        session[:user_id] = @user.id
+        log_in(@user)
+        remember(@user) if remember_user?
         redirect_to gossip_index_path
     else
         flash[:alert]= "User not saved"

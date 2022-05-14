@@ -44,12 +44,13 @@
         <li class="nav-item">
         <%=link_to "Contact", contact_path, :class => "nav-item nav-link" %>
         </li>
+        <li><%=logged_in?%></li>
         <%if logged_in?%>
         <div class="dropdown">
           <button class="btn btn-info dropdown-toggle mx-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Log Out </button>
           <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1">
-            <li><div class="text-center">&nbsp;&nbsp;<%="Logged as #{current_user.full_name.capitalize}"%></div></li>
+            <li><div class="text-center">&nbsp;&nbsp;<%="Logged as #{current_user.full_name}"%></div></li>
             <li><%=link_to "Log Out", session_path(session.id), :method => "delete", :class => "dropdown-item btn btn-light"  %></li>
           </ul>
         </div>
@@ -83,6 +84,12 @@
 </nav>
 
   <div class="p-3 container">
+    <% flash.each do |type, msg| %>
+    <div class=" alert alert-<%= type %> alert-dismissable fade show" role="alert">
+    <button type="button" class="btn-close right" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= msg %></div>
+    <% end %>
+    
     <%= yield %>
   </div>
 

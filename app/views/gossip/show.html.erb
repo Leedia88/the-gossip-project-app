@@ -3,12 +3,6 @@
 <%=link_to "Back to Gossips", gossip_index_path, :class => "card-link btn btn-light" %>
 </div>
 
-<div class="container-fluid px-5">
-  <% flash.each do |type, msg| %>
-    <div class="alert alert-success mt-5" role="alert"><%= msg %></div>
-  <% end %>
-</div>
-
 <div class="card m-5">
     <div class="card-header d-flex space-around text-center ">
     <span style="font-family:'Macondo';font-size:1.5rem;">The author:  &nbsp;  <%=link_to @user.first_name, user_path(@user), :class => "me-5"%>

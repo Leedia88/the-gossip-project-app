@@ -1,6 +1,3 @@
-    <% flash.each do |type, msg| %>
-    <div class="alert alert-<%= type %>" role="alert"><%= msg %></div>
-    <% end %>
 
 <div class="mx-5">
 <h2>Log In</h2>
@@ -14,6 +11,7 @@
     <%=f.text_field(:password, {:class => "form-control", :type => "password"})%>
     </p>
     <%= f.submit({:value => "Log In", :class => "card-link btn btn-info"}) %>
+    <%= f.submit({:value => "Log in and Remember me", :class => " btn btn-info"})%>
 <%end%>
 
 </div>

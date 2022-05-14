@@ -1,12 +1,4 @@
 
-
-
-<div class="container-fluid px-5">
-  <% flash.each do |type, msg| %>
-    <div class="alert alert-success mt-5" role="alert"><%= msg %></div>
-  <% end %>
-</div>
-
 <div class="card m-5">
     <div class="card-header text-center">The author:   <%=link_to @user.first_name, user_path(@user), :class => "ml-2"%></div>
     <div class="card-body">

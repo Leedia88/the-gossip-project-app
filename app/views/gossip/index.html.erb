@@ -1,17 +1,11 @@
     <div class="text-center"><h1>Welcome!</h1></div>
-   
-   <% flash.each do |type, msg| %>
-    <div class=" alert alert-<%= type %> alert-dismissable fade show" role="alert">
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <%= msg %></div>
-    <% end %>
-      
+
 
     <div class="text-center">
     <p>Si tu as du croustillant à nous partager, tu peux :</p>
     <%=link_to "Create a new gossip", new_gossip_path, :class => "card-link btn btn-info" %><br><br>
     </div>
-    <h3>Tous les potins THP! : </h3>
+    <h3>Tous les potins THP! </h3>
     <div class="flex-container">
         <% @gossips.each_with_index.map do |gossip, index| %>
             <div class="card m-4 card-container">
