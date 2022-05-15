@@ -29,7 +29,5 @@ class SessionsController < ApplicationController
         params.require(:session).permit(:email, :password)
     end    
 
-    def remember_user?
-        params[:commit] == "Log in and Remember me" || params[:commit] == "Sign up and Remember me"
-    end
+
 end

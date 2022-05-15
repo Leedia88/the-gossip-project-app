@@ -1,7 +1,7 @@
 class Gossip < ApplicationRecord
     has_many :comments, as: :commentable
-    has_many :tags_gossips
-    has_many :tags, through: :tags_gossips
+    has_many :tag_gossips, :dependent => :destroy
+    has_many :tags, through: :tag_gossips
     has_many :likes
     belongs_to :user
     validates :title, presence: true

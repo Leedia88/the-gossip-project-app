@@ -21,29 +21,31 @@
 
   <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:11035;">
   <div class="container-fluid">
     <%=link_to "The Gossip Project", root_path, :class => "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
         <li class="nav-item">
-          <%=link_to "Home", root_path, :class => "nav-item nav-link active" %>
-        </li>
-        <li class="nav-item">
-          <%=link_to "Gossipers", user_index_path, :class => "nav-item nav-link" %>
+          <%=link_to "Home", root_path, :class => "nav-item nav-link active" %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Community
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="nav-item"><%=link_to "Gossipers", user_index_path, :class => "dropdown-item" %></li><br>
+            <li class="nav-item"><%=link_to "Team", team_path, :class => "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="nav-item"><%=link_to "Contact", contact_path, :class => "dropdown-item" %></li>
+          </ul>
         </li>
         <li class="nav-item">
         <%=link_to "Cities", cities_path, :class => "nav-item nav-link" %>
         </li>
-        <li class="nav-item">
-        <%=link_to "Team", team_path, :class => "nav-item nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%=link_to "Contact", contact_path, :class => "nav-item nav-link" %>
-        </li>
+        
         <li><%=logged_in?%></li>
         <%if logged_in?%>
         <div class="dropdown">

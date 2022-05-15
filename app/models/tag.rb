@@ -1,5 +1,5 @@
 class Tag < ApplicationRecord
-    has_many :tags_gossips
+    has_many :tag_gossips, :dependent => :destroy
     has_many :gossips, through: :tags_gossips
 
 def self.get_id(name)
