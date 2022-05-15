@@ -33,31 +33,41 @@ class GossipController < ApplicationController
 
     def create
         puts params
-        tag_param = params[:tags_id]
+        @tags = Tag.all
         @gossip = Gossip.new(gossip_params)
                 if @gossip.save
-                    if tag_param
-                        tag_param.each do |tag_id|
-                            TagGossip.create(tag_id: tag_id, gossip_id: @gossip.id)
+                    tags = params[:tags].split
+                    if tags
+                        tags.each do |tag|
+                            TagGossip.create!(tag_id: Tag.get_id(tag), gossip_id: @gossip.id)
                         end
                     end
                     flash[:success] = "Gossip Created"
                     redirect_to gossip_index_path
                 else
-                    flash[:danger] = "Error : gossip not saved"
                     render :new
                 end
     end
 
     def edit
         @user = User.find(@gossip.user_id)
-        @tags_ids = TagGossip.find_tags_id(@gossip)
+        @tags_list = Tag.get_list(@gossip)
         @tags = Tag.all
     end
 
     def update
         if @gossip.update(gossip_params)
-            redirect_to @gossip, notice: "Gossip Updated"
+            tags = params[:tags].split
+                    if tags #si params non vide
+                        TagGossip.where("gossip_id = ?", @gossip.id).delete_all
+                        tags.each do |tag| #nom du tag
+                            tg = TagGossip.new(tag_id: Tag.get_id(tag), gossip: @gossip)
+                            if tg.save
+                            end
+                        end
+                    end
+            flash[:success] = "Gossip Updated"
+            redirect_to @gossip
         else
             render :edit
         end
@@ -91,7 +101,7 @@ class GossipController < ApplicationController
     end
 
     def authenticate_current_user
-        unless log_in(@gossip.user)
+        unless current_user == @gossip.user
           flash[:warning] = "You are not authorized to modify/delete this gossip!"
           redirect_to gossip_index_path
         end

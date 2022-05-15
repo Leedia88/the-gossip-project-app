@@ -44,5 +44,9 @@ module SessionsHelper
         forget(user)
         session.delete(:user_id)
     end
+
+    def remember_user?
+        params[:commit] == "Log in and Remember me" || params[:commit] == "Sign up and Remember me"
+    end
 end
 

@@ -7,9 +7,8 @@
         <div class="alert alert-danger"><%=msg%></div>
         <%end%>
     <%end%>
-<p>
-<%= f.label :user_id%> <br> 
- <%= f.text_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
+<p> <br> 
+ <%= f.hidden_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
 </p>
 <p>
 <%= f.label :title%> <br> 
@@ -19,23 +18,18 @@
 <%= f.label :content%> <br>
 <%= f.text_area(:content, {:class => "form-control"})%>
 </p>
-<p>
-Tags <br>
+
+<%= label_tag :tags%> <br> 
+
 <%@tags.each do |tag|%>
 <%= label_tag tag.id, "#{tag.title}" %>
 <%= check_box_tag 'tags_id[]', tag.id%>
 <%end%>
-</p>
+
+<%= text_field_tag(:tags)%>
 <p>
-<%= f.submit({:class => "card-link btn btn-light"}) %>
+<br><%= f.submit({:class => "card-link btn btn-light"}) %>
 <%=link_to "Cancel", gossip_index_path, :class => "card-link btn btn-light"%>
 </p>
 <%end%>
 
-  <%# 
-  Parameters: {"utf8"=>"✓", 
-  "authenticity_token"=>"Liog4z6qdykScxM3zjfcm1q0i+U73PFj19XfPx7PfpDE7Ww7FaKX1hYPomBoVu8bL6VMNRjSo81TpYyVpbRc+g==", 
-  "gossip"=>{"user_id"=>"1", "title"=>"sfgsfhsfth", "content"=>"hdgdfhd"}, 
-  "tagsgossip"=>{"tag"=>["{:name=>\"tag.title\", :checked=>false, :id=>5}", "{:name=>\"tag.title\", :checked=>false, :id=>6}"]}, "commit"=>"Save Gossip"}
-
-  

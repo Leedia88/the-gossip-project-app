@@ -15,7 +15,7 @@
           <%end%>
         <br><p class="card-text mt-3"><%=@gossip.content%></p>
               <div class="text-center">
-            <%if log_in(@gossip.user)%>
+            <%if current_user == @gossip.user%>
               <%=link_to "Edit", edit_gossip_path(@gossip), :class => "btn btn-info mb-3 text-center ml-5"%>
               <%=link_to "Delete", @gossip, :method => :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-outline-danger mb-3 text-center" %>
              <%end%> 
@@ -42,6 +42,7 @@
               <td><%= comment.content %></td>
               <%if current_user == comment.user %> 
               <%=link_to "Edit", edit_gossip_comment_path(@gossip, comment), :class => "badge badge-info mb-3 text-center", :style => "background-color:cyan"%>
+              <%=link_to "Comment", edit_gossip_comment_path(@gossip, comment), :class => "badge badge-info mb-3 text-center", :style => "background-color:cyan"%>
               <%end%><br>
               </tr>
               </li>
@@ -59,8 +60,7 @@
                     <%end%>
                 <%end%>
                 <p>
-                <%= f.label :user_id%> <br> 
-                <%= f.text_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
+                <%= f.hidden_field(:user_id, {:value => current_user.id, :readonly => "readonly"}) %>
                 </p>
                 <p><%= f.label :content%> <br>
                 <%= f.text_area(:content, {:class => "form-control"})%>
