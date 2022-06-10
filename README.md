@@ -1,23 +1,11 @@
 # Gossip Project
-This README would normally document whatever steps are necessary to get the
-application up and running....
 
 ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)  
 ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white) 
-
-* Configuration : Ruby version 2.7.4, Rails v.5.2.7.1
-- Clone this repository with git
-- Install the gems  
-  `bundle install`
-- Implement the database:  
- `rails db:create`  
- `rails db:migrate`    
- `rails db:seed`  
    
-- Acess with http ://localhost:3000/  
- `rails s`
-
-
+   Check the website online! 
+   https://gentle-reaches-38825.herokuapp.com/
+   
 # Pinciples
 
 * A user can sign up to The Gossip Project
